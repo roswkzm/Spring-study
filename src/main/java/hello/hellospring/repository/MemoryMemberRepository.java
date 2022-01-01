@@ -2,19 +2,16 @@ package hello.hellospring.repository;
 
 import hello.hellospring.domain.Member;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
-public class MemoryMemberRespository implements MemberRespository{
+public class MemoryMemberRepository implements MemberRepository {
 
     private static Map<Long, Member> store = new HashMap<>();
     private static long sequence = 0L;
 
     @Override
     public Member save(Member member) {
-        member.setId(++sequence);
+        member.setId(++sequence); //멤버의 id값이 ++sequence로 들어간다
         store.put(member.getId(), member);
         return  member;
     }
@@ -25,7 +22,7 @@ public class MemoryMemberRespository implements MemberRespository{
     }
 
     @Override
-    public Optional<Member> findById(String name) {
+    public Optional<Member> findByName(String name) {
         return store.values().stream()
                 .filter(member -> member.getName().equals(name))
                 .findAny();
@@ -33,6 +30,10 @@ public class MemoryMemberRespository implements MemberRespository{
 
     @Override
     public List<Member> findAll() {
-        return null;
+        return new ArrayList<>(store.values());
+    }
+
+    public void clearStore(){
+        store.clear();
     }
 }
