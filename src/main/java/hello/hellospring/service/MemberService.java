@@ -9,12 +9,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+
+//@Service      자동으로 스프링 빈 등록
 public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    @Autowired
+    //@Autowired    자동으로 스프링 빈 등록
     public MemberService(MemberRepository memberRepository){
         this.memberRepository = memberRepository;
     }
