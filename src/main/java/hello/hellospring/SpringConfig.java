@@ -1,6 +1,7 @@
 package hello.hellospring;
 
 import hello.hellospring.repository.JdbcMemberRepository;
+import hello.hellospring.repository.JdbcTemplateMemberRepository;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
 import hello.hellospring.service.MemberService;
@@ -29,6 +30,7 @@ public class SpringConfig {
     public MemberRepository memberRepository(){
 
         //return new MemoryMemberRepository(); //메모리에 저장하는 코드
-        return new JdbcMemberRepository(dataSource);
+        //return new JdbcMemberRepository(dataSource); //순수 하코딩 jdbc에 관련된 부분
+        return new JdbcTemplateMemberRepository(dataSource);    // jdbc템플릿을 통한 db접근 방법
     }
 }
