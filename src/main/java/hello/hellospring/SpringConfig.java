@@ -12,24 +12,24 @@ import javax.sql.DataSource;
 @Configuration
 public class SpringConfig {
 
-    private EntityManager em;
+    private final MemberRepository memberRepository;
 
     @Autowired
-    public SpringConfig(EntityManager em) {
-        this.em = em;
+    public SpringConfig(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
 
     @Bean
     public MemberService memberService(){
-        return new MemberService(memberRepository());
+        return new MemberService(memberRepository);
     }
 
-    @Bean
-    public MemberRepository memberRepository(){
+//    @Bean
+//    public MemberRepository memberRepository(){
 
         //return new MemoryMemberRepository(); //메모리에 저장하는 코드
         //return new JdbcMemberRepository(dataSource); //순수 하코딩 jdbc에 관련된 부분
         //return new JdbcTemplateMemberRepository(dataSource);    // jdbc템플릿을 통한 db접근 방법
-        return new JpaMemberRepository(em);   // Jpa를 통한 db접근 방법
-    }
+//        return new JpaMemberRepository(em);   // Jpa를 통한 db접근 방법
+//    }
 }
