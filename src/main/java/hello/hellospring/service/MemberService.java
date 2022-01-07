@@ -24,9 +24,10 @@ public class MemberService {
 
     // 회원 가입에 대한 부분
     public Long join(Member member){
-        validateDuplicateMember(member);    //중복 회원 검증
-        memberRepository.save(member);
-        return member.getId();
+
+            validateDuplicateMember(member);    //중복 회원 검증
+            memberRepository.save(member);
+            return member.getId();
     }
 
 
